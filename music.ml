@@ -183,10 +183,11 @@ let rec list_to_stream (lst : obj list) : event NLS.stream =
       match nlst with
       |[] -> list_to_stream lst
       |h::tl -> (match h with
-        |Note(p,t,i) ->
-          Cons(Tone(0.,p,i), fun()->Cons(Stop(t,p), list_to_stream_rec tl))
-        |Rest(f) ->
-          Cons(Tone(0.,(A,0),0),fun()->Cons(Stop(f,(A,0)),
+        |Note(p,t,i) -> fun () ->
+          NLS.Cons(Tone(0.,p,i),
+            fun()->NLS.Cons(Stop(t,p), list_to_stream_rec tl))
+        |Rest(f) -> fun()->
+          NLS.Cons(Tone(0.,(A,0),0),fun()->NLS.Cons(Stop(f,(A,0)),
             list_to_stream_rec tl))
     )
   in list_to_stream_rec lst ;;
