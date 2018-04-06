@@ -179,18 +179,19 @@ around as well. Both need to be recursive, since you will call both the
 inner and outer functions at some point. See below for some examples.
 ......................................................................*)
 let rec list_to_stream (lst : obj list) : event NLS.stream =
-    let rec list_to_stream_rec nlst =
+  failwith "list_to_stream not implemented" ;;
+    (*let rec list_to_stream_rec nlst =
       match nlst with
       |[] -> list_to_stream lst
       |h::tl -> (match h with
-        |Note(p,t,i) -> lazy (fun () ->
+        |Note(p,t,i) ->
           Cons(Tone(0.,p,i),
-            fun()->Cons(Stop(t,p), list_to_stream_rec tl)))
-        |Rest(f) -> lazy (fun()->
-          Cons(Tone(0.,(A,0),0),fun()->Cons(Stop(f,(A,0)),
-            list_to_stream_rec tl)))
+            Cons(Stop(t,p), list_to_stream_rec tl))
+        |Rest(f) ->
+          Cons(Tone(0.,(A,0),0),Cons(Stop(f,(A,0)),
+            list_to_stream_rec tl))
     )
-  in list_to_stream_rec lst ;;
+  in list_to_stream_rec lst ;; *)
 
 (*......................................................................
 Write a function pair that merges two event streams. Events that happen
@@ -199,7 +200,8 @@ for some examples.
 ......................................................................*)
 let rec pair (a : event NLS.stream) (b : event NLS.stream)
            : event NLS.stream =
-  let heada = NLS.head a in
+  failwith "pair not implemented" ;;
+(*  let heada = NLS.head a in
   let headb = NLS.head b in
   let timeheada = time_of_event heada in
   let timeheadb = time_of_event headb in
@@ -217,7 +219,7 @@ let rec pair (a : event NLS.stream) (b : event NLS.stream)
              pair (NLS.tail a) (NLS.tail b)))
   else
   fun()->Cons(heada, pair (NLS.tail a) (fun()->Cons((aux timeheada) headb,
-    NLS.tail b)))
+    NLS.tail b))) *)
 
 (*......................................................................
 Write a function transpose that takes an event stream and moves each pitch

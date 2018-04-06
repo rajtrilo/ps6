@@ -43,7 +43,7 @@ the input stream. For example:
 # first 5 (average (to_float nats)) ;;
 - : float list = [0.5; 1.5; 2.5; 3.5; 4.5]
 ......................................................................*)
-  
+
 let average (s : float stream) : float stream =
   failwith "average not implemented" ;;
 
@@ -52,7 +52,7 @@ can instead use the stream of averaged pi_sums, which converges much
 more quickly. Test that it requires far fewer steps to get within,
 say, 0.001 of pi. You'll want to record your results below for Problem
 7. *)
-   
+
 (*......................................................................
 Problem 6: Implementing Aitken's method
 
@@ -61,7 +61,7 @@ is Aitken's method. The formula is given in the problem set
 writeup. Write a function to apply this accelerator to a stream, and
 use it to generate approximations of pi.
 ......................................................................*)
-   
+
 let aitken (s: float stream) : float stream =
   failwith "aitken not implemented" ;;
 
@@ -72,7 +72,7 @@ Fill out the following table, recording how many steps are needed to
 get within different epsilons of pi.
 
     ---------------------------------------------------------
-    epsilon  |  pi_sums  |  averaged method  |  aitken method 
+    epsilon  |  pi_sums  |  averaged method  |  aitken method
     ---------------------------------------------------------
     0.1      |           |                   |
     ---------------------------------------------------------
@@ -94,7 +94,7 @@ of one or more (lazy) child trees. Complete the implementation by
 writing print_depth, tmap, tmap2, and bfenumerate.  We recommend
 implementing them in that order.
 ......................................................................*)
-   
+
 type 'a treeval = Node of 'a * 'a tree list
  and 'a tree = 'a treeval Lazy.t ;;
 
@@ -202,7 +202,7 @@ with 0. For example:
 ......................................................................*)
 let rec tree_nats : int tree =
   lazy (failwith "tree_nats not implemented") ;;
-                                                 
+
 (*======================================================================
 Time estimate
 
